@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request ,jsonify
 import json
+import Util.dbUtil as odb
 
 app = Flask(__name__)
 
@@ -21,12 +22,20 @@ def index():
     print('user_name='+data.get("user_name",None))
     print('user_pwd='+data.get("user_pwd",None))
     print('request.remote_addr='+request.remote_addr)
-    print('')
+
         
     if  info['user_title'] is None:
         return jsonify({"message":"text not found"})
     else:
         return jsonify(info)
+
+
+@app.route('/getUserProfileList',methods=['GET','POST'])
+def getList():
+    m = odb.dbUtil()
+    m._checkDB()
+    reslut = m._selectUserProfile([])
+    return jsonify(reslut)
 
 if __name__ == '__main__':
     app.run(debug=True,host='0.0.0.0',port=5000)
