@@ -1,0 +1,11 @@
+CREATE TABLE roles (
+    id INTEGER PRIMARY KEY ASC AUTOINCREMENT,
+    rolename TEXT NOT NULL
+);
+
+CREATE TABLE users (
+    id INTEGER PRIMARY KEY ASC AUTOINCREMENT,
+    username TEXT NOT NULL,
+    role_id INTEGER,
+    FOREIGN KEY (role_id) REFERENCES roles(id)
+);
