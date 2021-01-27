@@ -132,5 +132,3 @@ class dbUtil():
             for row in cur:
                 data.append(row)
             return data
-            
-            
